@@ -10,9 +10,9 @@ const REPO = fs.readFileSync('repo.html', 'utf-8')
 let INDEX = fs.readFileSync('main.html', 'utf-8')
 
 //-- Name of the Json file to read
-const JSON_FILE = fs.readFileSync("/home/ana/Documentos/TFG/TFG/DATA_JSON/total_data.json")
-const JSON_FILESUM = fs.readFileSync("/home/ana/Documentos/TFG/TFG/DATA_JSON/summary_data.json")
-const JSON_FILEREPO = fs.readFileSync("/home/ana/Documentos/TFG/TFG/DATA_JSON/repo_data.json")
+const JSON_FILE = fs.readFileSync("/home/jjr/PycharmProjects/pycefr/DATA_JSON/total_data.json")
+const JSON_FILESUM = fs.readFileSync("/home/jjr/PycharmProjects/pycefr/DATA_JSON/summary_data.json")
+const JSON_FILEREPO = fs.readFileSync("/home/jjr/PycharmProjects/pycefr/DATA_JSON/repo_data.json")
 
 //-- Create the store structure from the contents of the file
 //-- Return us the json structure
