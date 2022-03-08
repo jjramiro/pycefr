@@ -224,14 +224,14 @@ def summary_Levels():
 
 if __name__ == "__main__":
     try:
-        '''type_option = sys.argv[1]
-        option = sys.argv[2]'''
-        page = urllib.request.urlopen("https://stackoverflow.com/questions/27243129/how-to-open-html-file").read()
+        type_option = sys.argv[1]
+        option = sys.argv[2]
+        '''page = urllib.request.urlopen("https://stackoverflow.com/questions/27243129/how-to-open-html-file").read()
         file = open("test.html", "w")
         file.write(str(page))
-        file.close()
+        file.close()'''
     except:
         sys.exit("Usage: python3 file.py type-option('directory', " +
                  "'repo-url', 'user') option(directory, url, user)")
-    '''choose_option()
-    summary_Levels()'''
+    choose_option()
+    summary_Levels()
