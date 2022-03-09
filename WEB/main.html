@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>MAIN</title>
     <script src="main.js" defer></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="email.js"></script>
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
@@ -19,10 +21,10 @@
       SUMMARY
     </div>
     <div id='email'>
-      <form action = "/result_email.py" method = "get">
-        Email: <input type = "text" name = "email">
-        <input type = "submit" value = "Submit" />
-      </form>
+      <form method="post">
+        Email: <input type = "text" id="myemail">
+		<input type="button" value="Send Email" onclick="sendEmail()"/>
+	  </form>
     </div>
   </body>
 </html>
