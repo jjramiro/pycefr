@@ -230,10 +230,12 @@ if __name__ == "__main__":
         file = open("test.py", "w")
         page_1 = str(page).split('s-prose js-post-body')[1]
         page_2 = page_1.split('js-post-menu pt2')[0]
-        page_3 = page_2.split('<code>')[1]
-        page_4 = page_3.split('</code>')[0]
-        print(page_4.split('\\n'))
-        file.writelines(page_4.split('\\n'))
+        page_3 = page_2.split('<code>')[1:]
+        page_4 = []
+        for e in page_3:
+            page_4 = e.split('</code>')[0]
+            page_4 = page_4.replace('&quot;', '"')
+            file.writelines(page_4.replace("\\n", "\n"))
         file.close()
     except:
         sys.exit("Usage: python3 file.py type-option('directory', " +
