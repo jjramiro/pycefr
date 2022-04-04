@@ -2,7 +2,6 @@
 Main Program
 """
 
-import urllib.request
 import ast
 import os
 import sys
@@ -15,6 +14,8 @@ from getcsv import read_FileCsv
 
 
 # Create lists of each attribute
+from stack_analyze import main_stack
+
 Literals = ['ast.List', 'ast.Tuple', 'ast.Dict']
 Variables = ['ast.Name']
 Expressions = ['ast.Call', 'ast.IfExp', 'ast.Attribute']
@@ -41,6 +42,9 @@ def choose_option():
         request_url()
     elif type_option == 'user':
         run_user()
+    elif type_option == 'stack':
+        pos = main_stack(option)
+        read_File(pos, repo='')
     else:
         sys.exit('Incorrect Option')
 
@@ -187,12 +191,14 @@ def read_Directory(absFilePath, repo):
         pass
 
 
-
 def read_File(pos, repo):
     """ Read the file and return the tree. """
     with open(pos) as fp:
         my_code = fp.read()
+        print(my_code)
         try:
+            import pdb
+            pdb.set_trace()
             tree = ast.parse(my_code)
             # print (ast.dump(tree))
             iterate_List(tree, pos, repo)
@@ -224,21 +230,10 @@ def summary_Levels():
 
 if __name__ == "__main__":
     try:
-        '''type_option = sys.argv[1]
-        option = sys.argv[2]'''
-        page = urllib.request.urlopen(sys.argv[2]).read()
-        file = open("test.py", "w")
-        page_1 = str(page).split('s-prose js-post-body')[1]
-        page_2 = page_1.split('js-post-menu pt2')[0]
-        page_3 = page_2.split('<code>')[1:]
-        page_4 = []
-        for e in page_3:
-            page_4 = e.split('</code>')[0]
-            page_4 = page_4.replace('&quot;', '"')
-            file.writelines(page_4.replace("\\n", "\n"))
-        file.close()
+        type_option = sys.argv[1]
+        option = sys.argv[2]
     except:
         sys.exit("Usage: python3 file.py type-option('directory', " +
-                 "'repo-url', 'user') option(directory, url, user)")
-    '''choose_option()
-    summary_Levels()'''
+                 "'repo-url', 'user', 'stack') option(directory, url, user, stackoverflow url)")
+    choose_option()
+    summary_Levels()
