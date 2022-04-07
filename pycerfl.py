@@ -44,7 +44,7 @@ def choose_option():
         run_user()
     elif type_option == 'stack':
         pos = main_stack(option)
-        read_File(pos, repo='')
+        read_Directory('test_directory', repo='test.py')
     else:
         sys.exit('Incorrect Option')
 
@@ -197,9 +197,7 @@ def read_File(pos, repo):
         my_code = fp.read()
         print(my_code)
         try:
-            import pdb
-            pdb.set_trace()
-            tree = ast.parse(my_code)
+            tree = ast.parse("r'''" + my_code + "'''")
             # print (ast.dump(tree))
             iterate_List(tree, pos, repo)
         except SyntaxError:

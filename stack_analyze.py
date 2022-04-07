@@ -15,7 +15,7 @@ def check_url(url):
 def read_and_extract(url):
     """function to read the url snippets"""
     page = urllib.request.urlopen(url).read()
-    file = open("test.py", "w")
+    file = open("test_directory/test.py", "w")
     page_1 = str(page).split('s-prose js-post-body')[1]
     page_2 = page_1.split('js-post-menu pt2')[0]
     page_3 = page_2.split('<code>')[1:]
@@ -23,7 +23,7 @@ def read_and_extract(url):
     for e in page_3:
         page_4 = e.split('</code>')[0]
         page_4 = page_4.replace('&quot;', '"')
-        file.writelines(page_4) #.replace("\\n", "\n")
+        file.writelines(page_4.replace("\\n", "\n")) #.replace("\\n", "\n")
     file.close()
 
 
@@ -31,5 +31,5 @@ def main_stack(url):
     """principal function to analyze stack overflow url"""
     check_url(url)
     read_and_extract(url)
-    pos = os.path.abspath('test.py')
+    pos = os.path.abspath('test_directory/test.py')
     return pos
