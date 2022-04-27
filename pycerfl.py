@@ -197,7 +197,7 @@ def read_File(pos, repo):
         my_code = fp.read()
         print(my_code)
         try:
-            tree = ast.parse("r'''" + my_code + "'''")
+            tree = ast.parse(my_code)
             # print (ast.dump(tree))
             iterate_List(tree, pos, repo)
         except SyntaxError:

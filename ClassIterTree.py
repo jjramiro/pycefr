@@ -33,8 +33,8 @@ class IterTree():
 
     def locate_Tree(self):
         """ Method iterating on the tree. """
-        import pdb
-        pdb.set_trace()
+        '''import pdb
+        pdb.set_trace()'''
         for self.node in ast.walk(self.tree):
             # Find attributes
             if type(self.node) == eval(self.attrib):
