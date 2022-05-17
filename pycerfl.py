@@ -44,7 +44,7 @@ def choose_option():
         run_user()
     elif type_option == 'stack':
         pos = main_stack(option)
-        read_Directory('test_directory', repo='test.py')
+        read_Directory(pos, repo='test_directory')
     else:
         sys.exit('Incorrect Option')
 
