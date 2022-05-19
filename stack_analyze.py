@@ -22,7 +22,7 @@ def remove_python_shell(snippet):
 
 
 def delete_one_line_file(file):
-    file_r = open(file, 'r')
+    file_r = open(file)
     if len(file_r.readlines()) == 1:
         os.remove(file)
     file_r.close()
@@ -39,11 +39,12 @@ def read_and_extract(url):
         for p in page_aux_1:
             page_aux_2 = p.split('</code>')[0]
             snippet = html.unescape(page_aux_2)
-            if " " in snippet:
+            if " " in snippet and 'Traceback' not in snippet:
                 filename = "test_directory/answer_" + str(answer_count) + '_file_' + str(answer_file_count) + ".py"
                 file = open(filename, "w")
                 snippet = remove_python_shell(snippet)
-                file.writelines(snippet.replace("\\n", "\n"))
+                snippet = snippet.replace("\\n", "\n")
+                file.writelines(snippet.replace("\\", ""))
                 file.close()
                 delete_one_line_file(filename)
                 answer_file_count = answer_file_count + 1
@@ -55,6 +56,12 @@ def read_and_extract(url):
         page_4 = e.split('</code>')[0]
         page_4 = page_4.replace('&quot;', '"')
         file.writelines(page_4.replace("\\n", "\n")) #.replace("\\n", "\n")'''
+
+
+def remove_files_from_test_directory():
+    directory = 'test_directory'
+    for f in os.listdir(directory):
+        os.remove(os.path.join(directory, f))
 
 
 def main_stack(url):
