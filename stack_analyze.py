@@ -16,8 +16,17 @@ def check_url(url):
 
 def remove_python_shell(snippet):
     if ">>>" in snippet:
-        snippet = snippet.replace('>>> ', '')
-        snippet = snippet.replace('>>>', '')
+        snippet_list = snippet.split('\\n')
+        final_snippet = ''
+        for element in snippet_list:
+            if ">>>" in element or element.startswith('   '):
+                element = element.replace('>>> ', '')
+                element = element.replace('>>>', '')
+                final_snippet += element + '\\n'
+        if final_snippet == '':
+            return snippet
+        else:
+            return final_snippet
     return snippet
 
 
@@ -39,7 +48,7 @@ def read_and_extract(url):
         for p in page_aux_1:
             page_aux_2 = p.split('</code>')[0]
             snippet = html.unescape(page_aux_2)
-            if " " in snippet and 'Traceback' not in snippet:
+            if " " in snippet and 'Traceback' not in snippet and '$' not in snippet:
                 filename = "test_directory/answer_" + str(answer_count) + '_file_' + str(answer_file_count) + ".py"
                 file = open(filename, "w")
                 snippet = remove_python_shell(snippet)
