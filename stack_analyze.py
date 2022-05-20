@@ -19,14 +19,13 @@ def remove_python_shell(snippet):
         snippet_list = snippet.split('\\n')
         final_snippet = ''
         for element in snippet_list:
-            if ">>>" in element or element.startswith('   '):
+            if (">>>" in element or element.startswith('   ') or element.startswith('...')) \
+                    and not element.startswith('#'):
                 element = element.replace('>>> ', '')
                 element = element.replace('>>>', '')
+                element = element.replace('...', '   ')
                 final_snippet += element + '\\n'
-        if final_snippet == '':
-            return snippet
-        else:
-            return final_snippet
+        return final_snippet
     return snippet
 
 
