@@ -43,7 +43,10 @@ def choose_option():
     elif type_option == 'user':
         run_user()
     elif type_option == 'stack':
-        pos = main_stack(option)
+        pos = main_stack(option, type_option)
+        read_Directory(pos, repo='test_directory')
+    elif type_option == 'pull':
+        pos = main_stack(option, type_option)
         read_Directory(pos, repo='test_directory')
     else:
         sys.exit('Incorrect Option')
