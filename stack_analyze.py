@@ -89,15 +89,22 @@ def read_and_extract(url, option):
     elif option == 'pull':
         url_1 = make_url(url)
         page_1 = urllib.request.urlopen(url_1).read()
-        filename = "test_directory/pull.py"
-        file = open(filename, "w")
-        snippet = str(page_1).split('@@')[-1] # .replace('+', '')
-        snippet = remove_plus(snippet)
-        snippet = snippet.replace("\\n", "\n")
-        snippet = snippet.replace("\\'", "'")
-        snippet = snippet.replace('/\\', '/')
-        file.writelines(snippet.replace(">>>", ""))
-        file.close()
+        pull_count = 0
+        snippet_list = str(page_1).split('@@')[1:]  # .replace('+', '')
+        for snippet in snippet_list:
+            if len(snippet) >= 50:
+                filename = "test_directory/pull_" + str(pull_count) + ".py"
+                file = open(filename, "w")
+                snippet = snippet.split('diff --git')[0]
+                snippet = remove_plus(snippet)
+                snippet = snippet.replace("\\n", "\n")
+                snippet = snippet.replace("\\'", "'")
+                snippet = snippet.replace('/\\', '/')
+                snippet = snippet.replace('\\r', '')
+                snippet = snippet.replace('\\ No newline at end of file', '')
+                file.writelines(snippet.replace(">>>", ""))
+                file.close()
+                pull_count = pull_count + 1
 
 
 def remove_files_from_test_directory():
