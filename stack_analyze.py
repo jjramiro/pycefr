@@ -101,6 +101,7 @@ def read_and_extract(url, option):
                 snippet = snippet.replace("\\'", "'")
                 snippet = snippet.replace('/\\', '/')
                 snippet = snippet.replace('\\r', '')
+                snippet = snippet.replace('\\t', '  ')
                 snippet = snippet.replace('\\ No newline at end of file', '')
                 file.writelines(snippet.replace(">>>", ""))
                 file.close()
